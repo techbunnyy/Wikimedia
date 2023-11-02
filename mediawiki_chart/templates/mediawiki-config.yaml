@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mediawiki-config
+data:
+  MEDIAWIKI_DB_USER: srv_mediawiki_user
+  MEDIAWIKI_DB_PASSWORD: Passw0rd@1
+  MEDIAWIKI_DB_NAME: mediawiki_db
+  MEDIAWIKI_DB_HOST: mariadb
+

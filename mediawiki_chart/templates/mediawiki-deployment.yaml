@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mediawiki
+  labels:
+    app: mediawiki
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mediawiki
+  template:
+    metadata:
+      labels:
+        app: mediawiki
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.mediawiki.image.repository }}:{{ .Values.mediawiki.image.tag }}"
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: mediawiki-config
+          ports:
+            - name: http
+              containerPort: 80
+          volumeMounts:
+            - name: mediawiki-pv
+              mountPath: /var/www/html/
+      volumes:
+        - name: mediawiki-pv
+          persistentVolumeClaim:
+            claimName: mediawiki-pvc
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+

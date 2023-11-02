@@ -1,0 +1,10 @@
+FROM mariadb:latest
+
+# Set environment variables for MariaDB
+ENV MYSQL_ROOT_PASSWORD=Passw0rd@1
+ENV MYSQL_DATABASE=mediawiki_db
+ENV MYSQL_USER=srv_mediawiki_user
+ENV MYSQL_PASSWORD=Passw0rd
+
+# Expose MariaDB port
+EXPOSE 3306

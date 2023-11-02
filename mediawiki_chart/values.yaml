@@ -1,0 +1,26 @@
+mediawiki:
+  image:
+    repository: techbunnyy/mediawiki
+    tag: latest
+  persistence:
+    enabled: true
+    size: 5Gi
+
+mariadb:
+  image:
+    repository: techbunnyy/mariadb
+    tag: latest
+  persistence:
+    enabled: true
+    size: 5Gi
+  rootPassword: Passw0rd@1 
+  database: mediawiki_db
+  user: srv_mediawiki_user
+  password: Passw0rd@1
+configmaps:
+  mediawiki:
+    MEDIAWIKI_DB_USER: srv_mediawiki_user
+    MEDIAWIKI_DB_PASSWORD: Passw0rd@1
+    MEDIAWIKI_DB_NAME: mediawiki_db
+    MEDIAWIKI_DB_HOST: mariadb
+
